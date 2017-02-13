@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>
+			Register for course
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		<h1>Register for course!</h1>
+		<form method="post">
+			{% raw xsrf_form_html() %}
+			<table align="center" border="1">
+			<tr>
+			<th>saved</th>
+			<th>course name</th>
+			<th>professor name</th>
+			<th>day</th>
+			<th>time</th>
+			<th>type</th>
+			<th>registered number</th>
+			</tr>
+			{% for each in info %}
+			{% if each['save'] and each['register'] %}
+			<tr bgcolor="red">
+			<td><input type="checkbox" name="pcid" value="{{each['pcid']}}" checked="checked"/></td>
+			<td>{{each['cname']}}</td>
+			<td>{{each['pname']}}</td> 
+			<td>{{each['cday']}}</td> 
+			<td>{{each['ctime']}}</td> 
+			<td>{{each['ctype']}}</td> 
+			<td>{{each['pccount']}}</td>
+			</tr>
+			{% elif each['save'] %}
+			<tr>
+			<td><input type="checkbox" name="pcid" value="{{each['pcid']}}" checked="checked"/></td>
+			<td>{{each['cname']}}</td>
+			<td>{{each['pname']}}</td> 
+			<td>{{each['cday']}}</td> 
+			<td>{{each['ctime']}}</td> 
+			<td>{{each['ctype']}}</td> 
+			<td>{{each['pccount']}}</td>
+			</tr>
+			{% elif each['register'] %}
+			<tr bgcolor="red">
+			<td><input type="checkbox" name="pcid" value="{{each['pcid']}}"/></td>
+			<td>{{each['cname']}}</td>
+			<td>{{each['pname']}}</td> 
+			<td>{{each['cday']}}</td> 
+			<td>{{each['ctime']}}</td> 
+			<td>{{each['ctype']}}</td> 
+			<td>{{each['pccount']}}</td>
+			</tr>
+			{% else %}
+			<tr>
+			<td><input type="checkbox" name="pcid" value="{{each['pcid']}}"/></td>
+			<td>{{each['cname']}}</td>
+			<td>{{each['pname']}}</td> 
+			<td>{{each['cday']}}</td> 
+			<td>{{each['ctime']}}</td> 
+			<td>{{each['ctype']}}</td> 
+			<td>{{each['pccount']}}</td>
+			</tr>
+			{% end %}
+			{% end %}
+			</table>
+			<br>
+			<p>Red means registered</p>
+			<input type="submit" value="save" name="op"/>
+			<input type="submit" value="register" name="op">
+			<input type="submit" value="delete" name="op">
+			<a href="/student" style = "text-decoration:none">
+				<input type="button" value="back"><br>
+			</a>
+			<br>
+		</form>
+	</body>
+</html>

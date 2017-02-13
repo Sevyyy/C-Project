@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>
+			{{registrar_name}}
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		<h1>Welcome!</h1>
+		<h2>{{registrar_name}}</h2>
+		<p>
+			<a href = "/mpi" style = "text-decoration:none">
+				<input type="button" value = "Maintain Professor Information">
+			</a>
+			<a href = "/msi" style = "text-decoration:none">
+				<input type="button" value = "Maintain Student Information">
+			</a>
+			<a href = "/mcc" style = "text-decoration:none">
+				<input type="button" value = "Maintain Course Catalog">
+			</a>
+			<form method = "post" action="/registrar">
+			{% if tag == '0'%}
+			<input type="submit" value = "Close Registration" name = "op">
+			{% elif tag == '1' %}
+			<input type="submit" value = "Open Registration" name = "op">
+			{% end %}
+			{% raw xsrf_form_html() %}
+			</form>
+			<a href="/notice" style="text-decoration:none">
+				<input type="button" value = "Notice">
+			</a>
+			<a href = "/" style = "text-decoration:none">
+				<input type = "button" value="logout">
+			</a>
+			<a href="/changepassword" style = "text-decoration:none"> 
+				<input type="button" value = "changepassword">
+			</a>
+		</p>
+	</body>
+</html>

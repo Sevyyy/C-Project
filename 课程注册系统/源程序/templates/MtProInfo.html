@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>
+			Maintain professor infomation
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		{% if mt_type == 'addaprofessor' %}
+		<form method = "post">
+			{% raw xsrf_form_html() %}
+			<h1>Add A Professor</h1>
+			<p>Name: <input type = "text" name = "name" /></p>
+			<p>Birthday: <input type = "text" name = "birthday"/>e.g.1996-03-26</p>
+			<p>SSN: <input type = "text" name = "ssn"/></p>
+			<p>Position: <input type = "text" name = "position"/></p>
+			<p>Department: <input type = "text" name = "department"/></p>
+			<p>
+				<input type = "submit" value = "add"/>
+				<a href="/mpi" style = "text-decoration:none">
+					<input type = "button" value="back"/>
+				</a>
+			</p>
+		</form>
+		{% end %}
+		{% if mt_type == 'changeaprofessor' %}
+		<h1>Change A Professor</h1>
+			<form method="post">
+				{% raw xsrf_form_html() %}
+				<p>Professor_id: <input type="text" name="pro_id"/></p>
+				<p><input type="submit" value="ok"/></p>
+			</form>
+			<form method="post">
+				{% raw xsrf_form_html() %}
+				<p>Name: <input type="text" name="name" value="{{name}}"/></p>
+				<p>Birthday: <input type="text" name="birthday" value="{{birthday}}"/></p>
+				<p>Position: <input type="text" name="position" value="{{position}}"/></p>
+				<p>Department: <input type="text" name="department" value="{{department}}"/></p>
+				<p>SSN: <input type="text" name="ssn" value="{{ssn}}"/></p>
+				<p>
+					{% if name != '' %}
+						<input type="submit" value="change" name="change"/>
+					{% end %}
+					<a href="/mpi" style = "text-decoration:none">
+						<input type = "button" value="back"/>
+					</a>
+				</p>
+			</form>
+		{% end %}
+		{% if mt_type == 'deleteaprofessor' %}
+			<h1>Delete A Professor</h1>
+			<form method="post">
+				{% raw xsrf_form_html() %}
+				<p>Professor_id: <input type="text" name="pro_id"/></p>
+				<p><input type="submit" value="ok"/></p>
+			</form>
+			<form method="post">
+				{% raw xsrf_form_html() %}
+				<p>Name: {{name}}</p>
+				<p>Birthday: {{birthday}}</p>
+				<p>Position: {{position}}</p>
+				<p>Department: {{department}}</p>
+				<p>SSN: {{ssn}}</p>
+				<p>
+					{% if name != '' %}
+						<input type="submit" value="delete" name="delete"/>
+					{% end %}
+					<a href="/mpi" style = "text-decoration:none">
+						<input type = "button" value="back"/>
+					</a>
+				</p>
+			</form>
+		{% end %}
+	</body>
+</html>

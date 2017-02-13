@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>
+			Conflict
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		{% if conflict_type == 'p' %}
+		<h1>The folowing course is conflict!</h1>
+		{% for each in info %}
+			<p>{{each['cname']}} on {{each['day']}} class {{each['time']}}</p>
+		{% end %}
+		<a href="/professor" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if conflict_type == 's' %}
+		<h1>The folowing course is conflict!</h1>
+		{% for each in info %}
+			<p>{{each['cname']}} on {{each['day']}} class {{each['time']}} teach by {{each['pname']}}</p>
+		{% end %}
+		<a href="/student" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+	</body>
+</html>

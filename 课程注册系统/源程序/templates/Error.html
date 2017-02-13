@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<title>
+			{{error_type}}
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		{% if error_type == 'keyerror' %}
+		<h1>Your password is incorrect!</h1>
+		<a href="/" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'accounterror' %}
+		<h1>Account not found!</h1>
+		<a href="/" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'illegallylogging' %}
+		<h1>Illegallylogging!</h1>
+		<a href="/" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'cpidnotfound' %}
+		<h1>Professor's ID not found!</h1>
+		<a href="/mtproinfo/changeaprofessor" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'dpidnotfound' %}
+		<h1>Professor's ID not found!</h1>
+		<a href="/mtproinfo/deleteaprofessor" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'csidnotfound' %}
+		<h1>Student's ID not found!</h1>
+		<a href="/mtstuinfo/changeastudent" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'dsidnotfound' %}
+		<h1>Student's ID not found!</h1>
+		<a href="/mtstuinfo/deleteastudent" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'prodateerror' %}
+		<h1>The date you input is invalid</h1>
+		<a href="/mpi" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'studateerror' %}
+		<h1>The date you input is invalid</h1>
+		<a href="/msi" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'ccidnotfound' %}
+		<h1>Course'ID not found</h1>
+		<a href="/mtcoursecatalog/changeacourse" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'dcidnotfound' %}
+		<h1>Course'ID not found</h1>
+		<a href="/mtcoursecatalog/deleteacourse" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'coursecounterror' %}
+		<h1>One of the course you registering is full, please check again!</h1>
+		<a href="/student" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		
+		{% if error_type == 'registering' %}
+		<h1>Some users still registering!</h1>
+		<a href="/registrar" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'sclosed' %}
+		<h1>Registering system is closed!</h1>
+		<a href="/student" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+
+		{% if error_type == 'pclosed' %}
+		<h1>Registering system is closed!</h1>
+		<a href="/professor" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+	</body>
+</html>

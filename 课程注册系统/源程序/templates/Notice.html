@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>
+			Notice
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		{% if tag == '1' %}
+		<h1>The follow course is successfully registered!</h1>
+		<table align="center" border="1">
+		<tr>
+		<th>course name</th>
+		<th>professor name</th>
+		<th>day</th>
+		<th>time</th>
+		<th>type</th>
+		</tr>
+		{% for each in info %}
+		<tr>
+		<td>{{each['cname']}}</td> 
+		<td>{{each['pname']}}</td>	 
+		<td>{{each['cday']}}</td> 
+		<td>{{each['ctime']}}</td> 
+		<td>{{each['ctype']}}</td>
+		</tr>
+		{% end %}
+		</table>
+		{% elif tag == '0' %}
+		<h1>It is still registering!</h1>
+		{% end %}
+		{% if user_type == 's' %}
+		<a href="/student" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% elif user_type == 'p' %}
+		<a href="/professor" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% elif user_type == 'r' %}
+		<a href="/registrar" style = "text-decoration:none"> 
+			<input type="button" value = "back">
+		</a>
+		{% end %}
+	</body>
+</html>

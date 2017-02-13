@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>
+			View report card
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		<h1> VIew report card! </h1>
+		{% for each in score %}
+			<p>{{each['cname']}}: {{each['score']}}</p>
+		{% end %}
+		<a href="/student" style="text-decoration:none">
+			<input type="button" value="back">
+		</a>
+	</body>
+</html>

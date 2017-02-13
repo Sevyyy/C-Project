@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>
+			Select course to teach
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		<h1>Select course to teach!</h1>
+		<form method="post">
+			{% raw xsrf_form_html() %}
+			<table border="1" align="center">
+			<tr>
+			<th>select</th>
+			<th>name</th>
+			<th>day</th>
+			<th>time</th>
+			</tr>
+			{% for each in info %}
+				{% if each['available'] %}
+				<tr>
+				<td><input type="checkbox" name="cid" value="{{each['course_id']}}" checked="checked" /></td>
+				<td>{{each['name']}}</td>
+				<td>{{each['day']}}</td> 
+				<td>{{each['time']}}</td>
+				</tr>
+				{% else %}
+				<tr>
+				<td><input type="checkbox" name="cid" value="{{each['course_id']}}"/></td>
+				<td>{{each['name']}}</td>
+				<td>{{each['day']}}</td> 
+				<td>{{each['time']}}</td>
+				</tr>
+				{% end %}
+			{% end %}
+			</table>
+			<input type="submit" value="save"/>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>
+			Maintain course catalog
+		</title>
+	</head>
+	<body bgcolor="pink" style="text-align:center;">
+		{% if mt_type == 'addacourse' %}
+		<form method = "post">
+			{% raw xsrf_form_html() %}
+			<h1>Add a course!</h1>
+			<p>Name: <input type = "text" name = "name" /></p>
+			<p>Day: <input type = "text" name = "day"/>e.g.Mon</p>
+			<p>Time: <input type = "text" name = "time"/>e.g.3</p>
+			<p>Term: <input type = "text" name = "term"/>e.g.201502</p>
+			<p>Type: <input type="text" name="type"/></p>
+			<p>
+				<input type = "submit" value = "add"/>
+				<a href="/mcc" style = "text-decoration:none">
+					<input type = "button" value="back"/>
+				</a>
+			</p>
+		</form>
+		{% end %}
+		{% if mt_type == 'changeacourse' %}
+		<h1>Change a course!</h1>
+		<form method="post">
+			{% raw xsrf_form_html() %}
+			<p>Course_id: <input type="text" name="c_id"/></p>
+			<p><input type="submit" value="ok"/></p>
+		</form>
+		<form method="post">
+			{% raw xsrf_form_html() %}
+			<p>Name: <input type = "text" name = "name" value="{{name}}"/></p>
+			<p>Day: <input type = "text" name = "day" value="{{day}}"/>e.g.Mon</p>
+			<p>Time: <input type = "text" name = "time" value="{{time}}"/>e.g.3</p>
+			<p>Term: <input type = "text" name = "term" value="{{term}}"/>e.g.201502</p>
+			<p>Type: <input type="text" name="type" value="{{c_type}}"</p>
+			<p>
+				{% if name != '' %}
+					<input type="submit" value="change" name="change"/>
+				{% end %}
+				<a href="/mcc" style = "text-decoration:none">
+					<input type = "button" value="back"/>
+				</a>
+			</p>
+		</form>
+
+		{% end %}
+		{% if mt_type == 'deleteacourse' %}
+		<p>delete?</p>
+		{% end %}
+	</body>
+</html>
