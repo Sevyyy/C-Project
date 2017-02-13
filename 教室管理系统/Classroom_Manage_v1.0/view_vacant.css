@@ -1,0 +1,22 @@
+body{
+	background-color: pink;
+}
+
+
+#div1{
+	margin-top: 100px;
+	text-align: center;
+}
+
+table{
+	margin:auto;
+}
+
+td{
+	text-align: left;
+}
+
+p{
+	font-size: 30;
+}
+
