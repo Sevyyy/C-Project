@@ -1,0 +1,123 @@
+#!/usr/bin/env python
+import keystoneclient.v2_0.client as ksclient
+from credentials import get_keystone_creds
+import os
+import sys
+
+creds = get_keystone_creds()
+keystone = ksclient.Client(**creds)
+
+#function defination
+def service_list():
+	os.system("keystone service-list")
+	return
+
+def role_list():
+	os.system("keystone role-list")
+	return
+
+def endpoint_list():
+	os.system("keystone endpoint-list")
+	return
+
+def tenant_list():
+	os.system("keystone tenant-list")
+	return
+
+def user_list():
+	os.system("keystone user-list")
+	return
+
+def add_tenant():
+	tenant_name = raw_input("tenant_name : ")
+	description = raw_input("descirption : ")
+	keystone.tenants.create(
+		tenant_name = tenant_name, 
+		description = description, 
+		enabled = True)
+
+def add_user_role():
+	user_name = raw_input("user_name : ")
+	password = raw_input("password : ")
+	email = raw_input("email : ")
+	tenant_name = raw_input("tenant_name : ")
+	
+	my_tenant = [x for x in keystone.tenants.list() if x.name==tenant_name]
+	if len(my_tenant) > 0:
+		my_tenant = my_tenant[0]
+	else:
+		print("No such tenant name %s"%(tenant_name))
+		return
+
+	my_user = keystone.users.create(
+		name = user_name, 
+		password = password, 
+		email = email, 
+		tenant_id = my_tenant.id)
+
+	role_name = "admin_role"
+	my_role = keystone.roles.create(role_name)
+	keystone.roles.add_user_role(my_user, my_role, my_tenant)
+
+def add_service_endpoint():
+	print(os.environ["OS_REGION_NAME"])
+	service_name = raw_input("service_name : ")
+	service_type = raw_input("service_type : ")
+	description = raw_input("description : ")
+	my_service = keystone.services.create(
+		name = service_name, 
+		service_type = service_type, 
+		description = description)
+
+ 	keystone_publicurl = "http://192.168.220.136:5000/v2.0"
+	keystone_adminurl = "http://192.168.220.136:35357/v2.0"
+
+	keystone.endpoints.create(
+		service_id = my_service.id, 
+		region = os.environ["OS_REGION_NAME"], 
+		publicurl = keystone_publicurl, 
+		adminurl = keystone_adminurl, 
+		internalurl = keystone_publicurl)
+
+def dosth_help():
+	print("--parameter :")
+	print("    help           : show the help list")
+	print("    service_list   : show the list of all services")
+	print("    role_list      : show the list of all roles")
+	print("    endpoint_list  : show the list of all endpoints")
+	print("    tenant_list    : show the list of all tenants")
+	print("    user_list      : show the list of all users")
+	print("    add_tenant     : add a tenant with some input")
+	print("    add_user_role  : add a role and user with some input")
+	print("    add_service_endpoint    : add a service and endpoint with some input")
+	return
+
+#begin parse
+if len(sys.argv) == 1:
+	print("------------------------------------------------------")
+	print("-- No parameter! Please enter 'dosth help' for help --")
+	print("------------------------------------------------------")
+elif len(sys.argv) > 2:
+	print("-------------------------")
+	print("-- Too much parameter! --")
+	print("-------------------------")
+else:
+	command = sys.argv[1]
+	cmd = \
+	{
+		'help' : dosth_help,
+		'service_list' : service_list,
+		'role_list' : role_list,
+		'endpoint_list' : endpoint_list,
+		'tenant_list' : tenant_list,
+		'user_list' : user_list,
+		'add_tenant' : add_tenant,
+		'add_user_role' : add_user_role,
+		'add_service_endpoint' : add_service_endpoint,
+	};
+	if command in cmd.keys():
+		cmd.get(command)()
+	else:
+		print("---------------------------------------------------------")
+		print("-- No such command! Please enter 'dosth help' for help --")
+		print("---------------------------------------------------------")
